@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guestbook-svc-dev
+  name: fm-helloworld-svc-dev
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/phelun/microservices.git'
-    path: guestbook-svc/overlays/dev
+    path: fm-helloworld-svc/overlays/dev
     targetRevision: main
     kustomize:
       namePrefix: dev-
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: guestbook-dev
+    namespace: fm-helloworld-svc
   syncPolicy:
     automated:
       prune: true
