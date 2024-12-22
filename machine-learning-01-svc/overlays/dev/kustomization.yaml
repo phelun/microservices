@@ -1,0 +1,8 @@
+resources:
+  # - application.yaml 
+  - ../../base
+  
+
+commonLabels:
+  environment: dev
+  app: machine-learning-01-svc 

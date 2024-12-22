@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-product-rating-svc
+  labels:
+    app: customer-product-rating-svc
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: customer-product-rating-svc
+  template:
+    metadata:
+      labels:
+        app: customer-product-rating-svc
+    spec:
+      containers:
+      - name: customer-product-rating-svc
+        image: 658951324167.dkr.ecr.eu-west-1.amazonaws.com/mlops-wip:0.1 # Replace with your Docker image
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_APP
+          value: "app.py"
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
