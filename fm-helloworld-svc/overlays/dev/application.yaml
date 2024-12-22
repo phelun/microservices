@@ -13,7 +13,7 @@ spec:
       namePrefix: dev-
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: fm-helloworld-svc
+    namespace: dev-fm-helloworld-svc
   syncPolicy:
     automated:
       prune: true
