@@ -1,0 +1,6 @@
+# namespace: helloworld-app-svc
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- configMap.yaml

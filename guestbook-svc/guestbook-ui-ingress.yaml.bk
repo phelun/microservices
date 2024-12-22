@@ -1,0 +1,28 @@
+global:
+  domain: https://gbook.brexit4u.com
+repoServer:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi            
+server:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  config:
+    url: "https://gbook.brexit4u.com" 
+  extraArgs:
+    - --insecure    
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/cors-expose-headers: "*, X-CustomResponseHeader"
+      nlb.ingress.kubernetes.io/scheme: internet-facing
+      nlb.ingress.kubernetes.io/target-type: instance
+      nlb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+      nlb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-west-1:658951324167:certificate/74ec2254-e70c-46d4-8f99-59a6134e3bd4"
+    hosts:
+      - gbook.brexit4u.com

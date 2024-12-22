@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: guestbook
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false" # Set to "true" if using HTTPS
+spec:
+  rules:
+  - host: guestbook.brexit4u.com # Replace with your domain or leave blank for IP-based access
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: guestbook-ui  # Replace with your Service name
+            port:
+              number: 80
+

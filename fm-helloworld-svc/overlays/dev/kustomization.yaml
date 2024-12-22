@@ -1,0 +1,10 @@
+resources:
+  - application.yaml 
+  - ../base
+  
+
+commonLabels:
+  environment: dev
+  app: fm-helloworld-svc  
+
+  

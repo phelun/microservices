@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+# namespace: helloworld-app-svc
+metadata:
+  name: fm-helloworld-svc
+spec:
+  selector:
+    deployment: hello
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8666
+    targetPort: 8080
