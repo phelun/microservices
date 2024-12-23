@@ -1,0 +1,37 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/cors-expose-headers: '*, X-CustomResponseHeader'
+    nlb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:658951324167:certificate/74ec2254-e70c-46d4-8f99-59a6134e3bd4
+    nlb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    nlb.ingress.kubernetes.io/scheme: internet-facing
+    nlb.ingress.kubernetes.io/target-type: instance
+  generation: 1
+  labels:
+    app.kubernetes.io/name: guestbook-svc
+    app.kubernetes.io/part-of: guestbook-svc
+  name: guestbook-svc
+  namespace: dev-fm-helloworld-svc
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: guestbook.brexit4u.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: dev-guestbook-svc
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: a3db25c553f274501b1c0d09bb867838-c42db08e8ec5e7ea.elb.eu-west-1.amazonaws.com
