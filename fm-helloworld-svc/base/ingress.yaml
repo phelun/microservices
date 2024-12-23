@@ -28,7 +28,7 @@ spec:
           service:
             name: dev-fm-helloworld-svc
             port:
-              number: 8080
+              number: 8666
         path: /
         pathType: Prefix
 status:
