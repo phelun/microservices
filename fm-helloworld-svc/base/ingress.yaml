@@ -26,7 +26,7 @@ spec:
       paths:
       - backend:
           service:
-            name: fm-helloworld-svc
+            name: dev-fm-helloworld-svc
             port:
               number: 8666
         path: /
