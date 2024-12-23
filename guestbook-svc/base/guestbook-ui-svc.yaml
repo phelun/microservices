@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: guestbook-ui
-  namespace: dev-fm-helloworld-svc # Specify the namespace explicitly
+  namespace: dev-guestbook-svc # Specify the namespace explicitly
   labels:
     app.kubernetes.io/name: guestbook-ui
     app.kubernetes.io/part-of: guestbook-app
