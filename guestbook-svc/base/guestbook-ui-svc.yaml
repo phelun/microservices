@@ -13,5 +13,9 @@ spec:
       port: 80 # Exposes the service on port 80
       targetPort: 80 # Routes traffic to the container's port
       protocol: TCP # Explicitly specify the protocol
+    - name: https
+      port: 443 # HTTPS port
+      targetPort: 443
+      protocol: TCP      
   selector:
     app: guestbook-ui # Ensure this matches pod labels
