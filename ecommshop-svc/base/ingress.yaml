@@ -13,5 +13,5 @@ spec:
 
       - path: /
         backend:
-          serviceName: website
+          serviceName: dev-website
           servicePort: 80
