@@ -5,3 +5,4 @@ resources:
 commonLabels:
   environment: dev
   app: guestbook-svc  
+#
