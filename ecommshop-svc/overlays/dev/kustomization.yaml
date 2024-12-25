@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+  
+
+commonLabels:
+  environment: dev
+  app: ecommshop-svc
+
