@@ -11,5 +11,4 @@ resources:
 
 commonLabels:
   purpose: voteapp
-
 namespace: voteapp
