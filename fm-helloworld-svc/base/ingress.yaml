@@ -34,4 +34,4 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - hostname: a3db25c553f274501b1c0d09bb867838-c42db08e8ec5e7ea.elb.eu-west-1.amazonaws.com
+    - hostname: a4b40b3cc74604200bf6de713371a1b1-61c57c651e3e11ad.elb.eu-west-1.amazonaws.com
