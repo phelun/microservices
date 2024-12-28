@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudacad-svc-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/phelun/microservices.git'
+    path: cloudacad-svc/
+    targetRevision: main
+    kustomize:
+      namePrefix: dev-
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev-cloudacad-svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
