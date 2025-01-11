@@ -6,6 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          working-directory: ./aws-workshop-webapp-svc/amazon-eks-frontend
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
@@ -14,7 +17,6 @@ jobs:
         run: node -v
 
       - name: Build front
-        working-directory: aws-workshop-webapp-svc/amazon-eks-frontend
         run: |
             npm install
             npm run build
