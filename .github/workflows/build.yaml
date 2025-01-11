@@ -13,8 +13,8 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
         with: 
-            repository: phelun/microservices
-            path: micro 
+          repository: phelun/microservices
+          path: micro 
 
       - name: Check Node v
         run: |
