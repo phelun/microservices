@@ -23,7 +23,7 @@ jobs:
         # working-directory: aws-workshop-webapp-svc
         run: |
             ls -l ./microservices
-            cd ./microservices/aws-workshop-webapp-svc
+            cd ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend
             ls -l 
             # npm install
             # npm run build
