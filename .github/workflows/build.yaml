@@ -20,12 +20,13 @@ jobs:
             node -v
 
       - name: Build front
-        working-directory: aws-workshop-webapp-svc
+        # working-directory: aws-workshop-webapp-svc
         run: |
             # npm install
             # npm run build
+
             ls -l 
-            
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
