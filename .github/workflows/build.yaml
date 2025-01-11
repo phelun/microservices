@@ -20,7 +20,7 @@ jobs:
             node -v
 
       - name: Build front
-        working-directory: aws-workshop-webapp-svc/amazon-eks-frontend
+        working-directory: aws-workshop-webapp-svc
         run: |
             npm install
             npm run build
