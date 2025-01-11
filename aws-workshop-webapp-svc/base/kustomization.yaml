@@ -1,0 +1,10 @@
+commonLabels:
+  app: webapp
+  env: dev
+
+resources:
+- namespace.yaml
+- deployment.yaml
+- flask-be-hpa.yaml
+- service.yaml
+- ingress.yaml

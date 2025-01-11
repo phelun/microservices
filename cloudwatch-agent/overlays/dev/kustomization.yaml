@@ -1,0 +1,14 @@
+namePrefix: dev-
+
+commonLabels:
+  env: dev
+
+commonAnnotations:
+  note: amazon workshop testing web app 
+
+bases:
+- ../../base
+
+# patchesStrategicMerge:
+# - configmap.yaml
+# - ingress.yaml

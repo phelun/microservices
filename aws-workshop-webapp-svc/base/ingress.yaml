@@ -1,0 +1,80 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: "flask-backend-ingress"
+    namespace: aws-workshop-webapp-svc
+    labels:
+      app.kubernetes.io/name: demo-flask-backend
+      app.kubernetes.io/part-of: demo-flask-backend
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: HTTP
+      nginx.ingress.kubernetes.io/cors-expose-headers: '*, X-CustomResponseHeader'
+      nlb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:658951324167:certificate/74ec2254-e70c-46d4-8f99-59a6134e3bd4
+      nlb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+      nlb.ingress.kubernetes.io/scheme: internet-facing
+      nlb.ingress.kubernetes.io/target-type: instance
+spec:
+    ingressClassName: nginx
+    rules:
+    - http:
+        paths:
+          - path: /contents/aws
+            pathType: Prefix
+            backend:
+              service:
+                name: "demo-flask-backend"
+                port:
+                  number: 8080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "nodejs-backend-ingress"
+  namespace: aws-workshop-webapp-svc
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/cors-expose-headers: '*, X-CustomResponseHeader'
+    nlb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:658951324167:certificate/74ec2254-e70c-46d4-8f99-59a6134e3bd4
+    nlb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    nlb.ingress.kubernetes.io/scheme: internet-facing
+    nlb.ingress.kubernetes.io/target-type: instance
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+        paths:
+          - path: /services
+            pathType: Prefix
+            backend:
+              service:
+                name: "demo-nodejs-backend"
+                port:
+                  number: 8080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "frontend-ingress"
+  namespace: aws-workshop-webapp-svc
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/cors-expose-headers: '*, X-CustomResponseHeader'
+    nlb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:658951324167:certificate/74ec2254-e70c-46d4-8f99-59a6134e3bd4
+    nlb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    nlb.ingress.kubernetes.io/scheme: internet-facing
+    nlb.ingress.kubernetes.io/target-type: instance
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "demo-frontend"
+                port:
+                  number: 80

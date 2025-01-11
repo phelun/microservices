@@ -1,0 +1,4 @@
+# namespace: helloworld-app-svc
+resources:
+# - namespace.yaml
+- cluster-autoscaler-autodiscover.yaml
