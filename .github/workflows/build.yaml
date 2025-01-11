@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     # defaults:
     #     run:
-    #       working-directory: ./aws-workshop-webapp-svc/amazon-eks-frontend
+          working-directory: aws-workshop-webapp-svc/amazon-eks-frontend
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
