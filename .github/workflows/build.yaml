@@ -6,8 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # defaults:
-    #     run:
+    defaults:
+        run:
           working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend
     steps:
       - name: Checkout source code
