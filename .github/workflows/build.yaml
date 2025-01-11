@@ -6,19 +6,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-          working-directory: microservices/aws-workshop-webapp-svc/amazon-eks-frontend
+    # defaults:
+    #     run:
+    #       working-directory: microservices/
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+        with: 
+            repository: phelun/microservices
+            path: microservices 
 
       - name: Check Node v
-        run: | 
-            pwd
+        run: |
             node -v
 
       - name: Build front
+        working-directory: aws-workshop-webapp-svc/amazon-eks-frontend
         run: |
             npm install
             npm run build
