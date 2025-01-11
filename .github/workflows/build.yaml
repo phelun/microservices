@@ -24,8 +24,7 @@ jobs:
         run: |
             ls -l 
             npm install
-            npm run build
-
+            # npm run build 
 
 
       - name: Configure AWS credentials
