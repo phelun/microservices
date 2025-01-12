@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
-        with: 
-          path: microservices/
+        # with: 
+        #   path: microservices/
 
       - name: check path 
         run: ls -l
