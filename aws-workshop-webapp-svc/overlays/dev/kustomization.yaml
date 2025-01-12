@@ -18,7 +18,7 @@ kind: Kustomization
 images:
 - name: /amazon-eks-frontend-ci
   newName: /amazon-eks-frontend-ci
-  newTag: a45dcea4
+  newTag: a039d0ac
 - name: 658951324167.dkr.ecr.eu-west-1.amazonaws.com/amazon-eks-frontend-ci
   newName: 658951324167.dkr.ecr.eu-west-1.amazonaws.com/amazon-eks-frontend-ci
   newTag: d1dc2db4
