@@ -1,14 +1,26 @@
-namePrefix: dev-
+# namePrefix: dev-
 
-commonLabels:
-  env: dev
+# commonLabels:
+#   env: dev
 
-commonAnnotations:
-  note: amazon workshop testing web app 
+# commonAnnotations:
+#   note: amazon workshop testing web app 
 
-bases:
-- ../../base
+# bases:
+# - ../../base
 
 # patchesStrategicMerge:
 # - configmap.yaml
 # - ingress.yaml
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# images:
+# - name: ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/demo-frontend
+#   newName: ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/demo-frontend
+#   newTag: a175b2ec
+resources:
+- ../../base
+patchesStrategicMerge:
+- amazon-eks-frontend-deployment-patch.yaml
+- amazon-eks-frontend-svc-patch.yaml
