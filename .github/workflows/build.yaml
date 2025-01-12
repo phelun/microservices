@@ -13,14 +13,14 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
         with: 
-          path: microservices/aws-workshop-webapp-svc/amazon-eks-frontend/
+          path: microservices/
 
       - name: Check Node v
         run: |
             node -v
 
       - name: Build front
-        # working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend
+        working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend
         run: |
             npm install
             ls -l 
