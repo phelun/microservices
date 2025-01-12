@@ -17,8 +17,8 @@ jobs:
 
       - name: check path 
         run: |
-            ls -l
-            ls -l ./aws-workshop-webapp-svc/
+            # ls -l
+            ls -l aws-workshop-webapp-svc
 
       - name: Check Node v
         run: |
