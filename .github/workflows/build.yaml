@@ -16,7 +16,9 @@ jobs:
         #   path: microservices/
 
       - name: check path 
-        run: ls -l
+        run: |
+            ls -l
+            ls -al aws-workshop-webapp-svc/amazon-eks-frontend
 
       - name: Check Node v
         run: |
