@@ -21,7 +21,7 @@ images:
   newTag: a175b2ec
 - name: /amazon-eks-frontend-ci
   newName: /amazon-eks-frontend-ci
-  newTag: 4375bff0
+  newTag: d1dc2db4
 resources:
 - ../../base
 patchesStrategicMerge:
