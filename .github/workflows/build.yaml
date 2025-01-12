@@ -22,8 +22,9 @@ jobs:
       - name: Build front
         # working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend
         run: |
-            ls -l 
             npm install
+            ls -l 
+            sleep 10s
             npm run build 
 
 
