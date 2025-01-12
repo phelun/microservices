@@ -6,9 +6,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-          working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend/
+    # defaults:
+    #     run:
+    #       working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend/
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
             node -v
 
       - name: Build front
-        working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend
+        # working-directory: ./microservices/aws-workshop-webapp-svc/amazon-eks-frontend
         run: |
             npm install
             ls -l 
