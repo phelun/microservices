@@ -18,7 +18,7 @@ jobs:
       - name: check path 
         run: |
             # ls -l
-            ls -l aws-workshop-webapp-svc
+            ls -l aws-workshop-webapp-svc/amazon-eks-frontend
 
       - name: Check Node v
         run: |
