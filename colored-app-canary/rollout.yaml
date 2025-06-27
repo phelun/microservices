@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: color-app
+  namespace: color-app-canary
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: color-app
+  template:
+    metadata:
+      labels:
+        app: color-app
+    spec:
+      containers:
+      - name: color-container
+        image: phelun/color-page:blue
+        ports:
+        - containerPort: 80
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: { duration: 30s }
+        - analysis:
+            templates:
+              - templateName: success-rate
+            args:
+              - name: success-rate
+                value: "80"
+        - setWeight: 50
+        - pause: { duration: 30s }
+        - setWeight: 100
+

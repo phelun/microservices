@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+  namespace: color-app-canary
+spec:
+  args:
+    - name: success-rate
+  metrics:
+    - name: success-rate-check
+      interval: 30s
+      count: 3
+      successCondition: result > {{args.success-rate}}
+      failureLimit: 1
+      provider:
+        prometheus:
+          address: http://prometheus-kube-prometheus-prometheus.monitoring.svc:9090
+          query: |
+            sum(rate(http_requests_total{status=~"2.."}[1m]))
+            /
+            sum(rate(http_requests_total[1m]))
+            * 100
+
