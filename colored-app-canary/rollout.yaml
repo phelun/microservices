@@ -2,9 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: color-app
-  namespace: color-app-canary
 spec:
-  replicas: 4
+  replicas: 2
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: color-app
@@ -13,23 +13,13 @@ spec:
       labels:
         app: color-app
     spec:
-    containers:
-      - name: color-demo
-        image: argoproj/rollouts-demo:blue
-        ports:
-          - containerPort: 8080
+      containers:
+        - name: color-demo
+          image: argoproj/rollouts-demo:blue
+          ports:
+            - containerPort: 8080
   strategy:
     canary:
       steps:
-        - setWeight: 20
-        - pause: { duration: 30s }
-        - analysis:
-            templates:
-              - templateName: success-rate
-            args:
-              - name: success-rate
-                value: "80"
         - setWeight: 50
         - pause: { duration: 30s }
-        - setWeight: 100
-
