@@ -13,11 +13,11 @@ spec:
       labels:
         app: color-app
     spec:
-      containers:
-      - name: color-container
-        image: phelun/color-page:blue
+    containers:
+      - name: color-demo
+        image: argoproj/rollouts-demo:blue
         ports:
-        - containerPort: 80
+          - containerPort: 8080
   strategy:
     canary:
       steps:
