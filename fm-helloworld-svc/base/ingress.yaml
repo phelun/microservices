@@ -1,37 +1,21 @@
-# Please edit the object below. Lines beginning with a '#' will be ignored,
-# and an empty file will abort the edit. If an error occurs while saving this file will be
-# reopened with the relevant failures.
-#
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/cors-expose-headers: '*, X-CustomResponseHeader'
-    nlb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:658951324167:certificate/74ec2254-e70c-46d4-8f99-59a6134e3bd4
-    nlb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-    nlb.ingress.kubernetes.io/scheme: internet-facing
-    nlb.ingress.kubernetes.io/target-type: instance
-  generation: 1
-  labels:
-    app.kubernetes.io/name: fm-helloworld-svc
-    app.kubernetes.io/part-of: fm-helloworld-svc
-  name: fm-helloworld-svc
+  name: fm-helloworld-ingress
   namespace: dev-fm-helloworld-svc
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
-  - host: hello.brexit4u.com
-    http:
-      paths:
-      - backend:
-          service:
-            name: dev-fm-helloworld-svc
-            port:
-              number: 8666
-        path: /
-        pathType: Prefix
-status:
-  loadBalancer:
-    ingress:
-    - hostname: a4b40b3cc74604200bf6de713371a1b1-61c57c651e3e11ad.elb.eu-west-1.amazonaws.com
+    - host: fmhello.brexit4u.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dev-fm-helloworld-svc
+                port:
+                  number: 8666
