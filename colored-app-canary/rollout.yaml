@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: color-app
+  namespace: color-app-canary
 spec:
   replicas: 2
   revisionHistoryLimit: 2
