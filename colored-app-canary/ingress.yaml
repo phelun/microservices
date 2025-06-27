@@ -6,6 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
     - host: color.brexit4u.com
       http:
@@ -17,4 +18,3 @@ spec:
                 name: color-app
                 port:
                   number: 80
-
