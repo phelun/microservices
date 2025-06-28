@@ -11,7 +11,9 @@ spec:
         prometheus:
           # address: http://prometheus-server.prometheus.svc.cluster.local
           address: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
+          # query: |
+          #   avg(http_request_duration_seconds{app="webapp"})
           query: |
-            avg(http_request_duration_seconds{app="webapp"})
+            scalar(avg(http_request_duration_seconds{app="webapp"}))
       successCondition: result < 0.5
       failureCondition: result >= 0.5
