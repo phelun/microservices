@@ -167,7 +167,8 @@ spec:
           templates:
           - templateName: dev-resource-usage-analysis
       - setWeight: 50
-      - pause: {duration: 20s}
+      # - pause: {duration: 20s}
+      - pause: {}
       - analysis:
           templates:
           - templateName: dev-resource-usage-analysis
