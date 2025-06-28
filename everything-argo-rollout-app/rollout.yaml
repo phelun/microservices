@@ -81,12 +81,43 @@
 #       - setWeight: 80
 #       - pause: {}
 ######################### 04 DEMO #########################
+# apiVersion: argoproj.io/v1alpha1
+# kind: Rollout
+# metadata:
+#   name: webapp-rollout
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: webapp
+#   template:
+#     metadata:
+#       labels:
+#         app: webapp
+#     spec:
+#       containers:
+#         - name: webapp
+#           image: nginx:1.19.0
+#           ports:
+#             - containerPort: 80
+#   strategy:
+#     canary:
+#       steps:
+#         - setWeight: 50
+#         - pause: {duration: 10s}
+#         - analysis:
+#             templates:
+#               - templateName: dev-webapp-response-time
+#         - setWeight: 50
+#         - pause: {}              
+#         - setWeight: 100
+######################## 05 MOCK ANALYSIS ####################
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: webapp-rollout
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: webapp
@@ -97,17 +128,15 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: nginx:1.19.0
+          image: nginx:1.19.10
           ports:
             - containerPort: 80
   strategy:
     canary:
       steps:
         - setWeight: 50
-        - pause: {duration: 10s}
+        - pause: {}
         - analysis:
             templates:
-              - templateName: dev-webapp-response-time
-        - setWeight: 50
-        - pause: {}              
+              - templateName: mock-success-rate-check
         - setWeight: 100

@@ -1,21 +1,44 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: AnalysisTemplate
+# metadata:
+#   name: webapp-response-time
+# spec:
+#   metrics:
+#     - name: response-time
+#       count: 3
+#       interval: 30s
+#       failureLimit: 1
+#       inconclusiveLimit: 2
+#       provider:
+#         prometheus:
+#           # address: http://prometheus-server.prometheus.svc.cluster.local
+#           address: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
+#           # query: |
+#           #   avg(http_request_duration_seconds{app="webapp"})
+#           query: |
+#             scalar(avg(http_request_duration_seconds{app="webapp"}))
+#       successCondition: result < 0.5
+#       failureCondition: result >= 0.5
+
+####################### MOCK ANALYSIS SIMULATE #######################
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: webapp-response-time
+  name: mock-success-rate-check
 spec:
   metrics:
-    - name: response-time
-      count: 3
-      interval: 30s
-      failureLimit: 1
-      inconclusiveLimit: 2
+    - name: success-rate
+      # This is a mock provider for demonstration purposes.
+      # In a real scenario, you would use a real metric provider, such as Prometheus.
       provider:
-        prometheus:
-          # address: http://prometheus-server.prometheus.svc.cluster.local
-          address: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
-          # query: |
-          #   avg(http_request_duration_seconds{app="webapp"})
-          query: |
-            scalar(avg(http_request_duration_seconds{app="webapp"}))
-      successCondition: result < 0.5
-      failureCondition: result >= 0.5
+        job:
+          spec:
+            template:
+              spec:
+                containers:
+                - name: main
+                  image: busybox
+                  command: [sh, -c]
+                  args: ["echo -n 99.5"]
+                restartPolicy: Never
+      successCondition: "result >= 99"
