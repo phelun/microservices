@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp
+  namespace: ceverything-argo
 spec:
   replicas: 1
   selector:
@@ -17,12 +18,13 @@ spec:
           image: nginx
           ports:
             - containerPort: 80
-            
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: webapp
+  namespace: ceverything-argo
 spec:
   ports:
     - port: 80
@@ -36,6 +38,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: webapp-monitor
+  namespace: ceverything-argo
   labels:
     team: frontend
 spec:
