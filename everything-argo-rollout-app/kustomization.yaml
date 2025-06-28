@@ -3,9 +3,10 @@ kind: Kustomization
 
 resources:
   - ns.yaml
+  - rollout.yaml
   - deployment.yaml
   - analysistemplate.yaml
-  - rollout.yaml
+
 
 namespace: ceverything-argo
 
