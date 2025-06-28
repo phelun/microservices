@@ -6,6 +6,7 @@ spec:
   metrics:
     - name: response-time
       interval: 5m
+      count: 2 
       provider:
         prometheus:
           # address: http://prometheus-server.prometheus.svc.cluster.local
