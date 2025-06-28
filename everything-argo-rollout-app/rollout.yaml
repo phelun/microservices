@@ -50,33 +50,62 @@
 #         ports:
 #         - containerPort: 80
 ######################### 03 DEMO #########################
+# apiVersion: argoproj.io/v1alpha1
+# kind: Rollout
+# metadata:
+#   name: example-rollout
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       app: example
+#   template:
+#     metadata:
+#       labels:
+#         app: example
+#     spec:
+#       containers:
+#       - name: rollouts-demo
+#         image: argoproj/rollouts-demo:blue
+#         ports:
+#         - containerPort: 8080
+#   strategy:
+#     canary:
+#       steps:
+#       - setWeight: 20
+#       - pause: {duration: 10s}
+#       - setWeight: 40
+#       - pause: {duration: 10s}
+#       - setWeight: 60
+#       - pause: {duration: 10s}
+#       - setWeight: 80
+#       - pause: {}
+######################### 04 DEMO #########################
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: example-rollout
+  name: webapp-rollout
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: example
+      app: webapp
   template:
     metadata:
       labels:
-        app: example
+        app: webapp
     spec:
       containers:
-      - name: rollouts-demo
-        image: argoproj/rollouts-demo:blue
-        ports:
-        - containerPort: 8080
+        - name: webapp
+          image: nginx:latest
+          ports:
+            - containerPort: 80
   strategy:
     canary:
       steps:
-      - setWeight: 20
-      - pause: {duration: 10s}
-      - setWeight: 40
-      - pause: {duration: 10s}
-      - setWeight: 60
-      - pause: {duration: 10s}
-      - setWeight: 80
-      - pause: {}
+        - setWeight: 50
+        - pause: {duration: 10s}
+        - analysis:
+            templates:
+              - templateName: webapp-response-time
+        - setWeight: 100

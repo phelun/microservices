@@ -5,7 +5,7 @@ resources:
   - ns.yaml
   - deployment.yaml
   - analysistemplate.yaml
-  # - rollout.yaml
+  - rollout.yaml
 
 namespace: ceverything-argo
 
