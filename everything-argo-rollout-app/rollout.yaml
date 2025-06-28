@@ -108,4 +108,6 @@ spec:
         - analysis:
             templates:
               - templateName: dev-webapp-response-time
+        - setWeight: 50
+        - pause: {}              
         - setWeight: 100
