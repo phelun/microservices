@@ -138,5 +138,5 @@ spec:
         - pause: {}
         - analysis:
             templates:
-              - templateName: mock-success-rate-check
+              - templateName: dev-mock-success-rate-check
         - setWeight: 100
