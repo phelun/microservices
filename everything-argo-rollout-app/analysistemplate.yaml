@@ -56,4 +56,4 @@ spec:
         prometheus:
           address: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
           query: |
-            count(kube_pod_info{namespace="ceverything-argo", pod=~"example-app-.*"})
+            count(kube_pod_info{namespace="ceverything-argo", pod=~"dev-example-app-.*"})
