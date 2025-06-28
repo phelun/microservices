@@ -5,9 +5,10 @@ metadata:
 spec:
   metrics:
     - name: response-time
-      interval: 30s
       count: 3
-      inconclusiveLimit: 3
+      interval: 30s
+      failureLimit: 1
+      inconclusiveLimit: 2
       provider:
         prometheus:
           # address: http://prometheus-server.prometheus.svc.cluster.local
