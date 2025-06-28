@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: nginx
+          ports:
+            - containerPort: 80
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: webapp
+  type: ClusterIP
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: webapp-monitor
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  endpoints:
+    - port: web  
