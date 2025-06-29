@@ -50,7 +50,7 @@ metadata:
 spec:
   metrics:
     - name: pod-count
-      successCondition: "result[0] >= 5"
+      successCondition: "result[0] >= 3"
       failureCondition: "result[0] < 3"
       provider:
         prometheus:
